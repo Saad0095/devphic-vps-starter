@@ -50,7 +50,7 @@ Run the following commands on your newly provisioned Hostinger Ubuntu 24.04 VPS:
 apt update && apt upgrade -y
 
 # 2. Clone the repository
-git clone https://github.com/devphic/devphic-vps-starter.git /opt/devphic-vps-starter
+git clone https://github.com/Saad0095/devphic-vps-starter.git /opt/devphic-vps-starter
 cd /opt/devphic-vps-starter
 
 # 3. Launch the automated setup wizard

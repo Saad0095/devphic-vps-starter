@@ -6,7 +6,7 @@
 [![Nginx](https://img.shields.io/badge/Nginx-Reverse%20Proxy-009639?style=flat-square&logo=nginx&logoColor=white)](https://nginx.org/)
 [![Certbot](https://img.shields.io/badge/Let's%20Encrypt-Automated%20SSL-003A70?style=flat-square&logo=letsencrypt&logoColor=white)](https://letsencrypt.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-[![CI Status](https://img.shields.io/badge/CI-Passing-brightgreen?style=flat-square&logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
+[![CI Status](https://github.com/Saad0095/devphic-vps-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/Saad0095/devphic-vps-starter/actions/workflows/ci.yml)
 
 > **Devphic VPS Starter** is a production-grade, minimal, and secure open-source deployment kit designed to help developers deploy Node.js applications to an **Ubuntu 24.04 VPS** with automated Nginx reverse proxying, Let's Encrypt HTTPS, UFW firewall hardening, and zero-downtime management scripts.
 
@@ -65,7 +65,7 @@ Connect to your Ubuntu 24.04 VPS via SSH and run:
 
 ```bash
 # Step 1: Clone the deployment kit
-git clone https://github.com/devphic/devphic-vps-starter.git /opt/devphic-vps-starter
+git clone https://github.com/Saad0095/devphic-vps-starter.git /opt/devphic-vps-starter
 cd /opt/devphic-vps-starter
 
 # Step 2: Make automation scripts executable

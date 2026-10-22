@@ -27,7 +27,7 @@ router.get('/', (_req, res) => {
       items: '/api/items',
       errorTest: '/api/error-test',
     },
-    documentation: 'https://github.com/devphic/devphic-vps-starter',
+    documentation: 'https://github.com/Saad0095/devphic-vps-starter',
     timestamp: new Date().toISOString(),
   });
 });

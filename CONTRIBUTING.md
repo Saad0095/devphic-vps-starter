@@ -50,7 +50,7 @@ Please treat all members with respect, courtesy, and constructive collaboration.
 
 1. Clone your fork:
    ```bash
-   git clone https://github.com/devphic/devphic-vps-starter.git
+   git clone https://github.com/Saad0095/devphic-vps-starter.git
    cd devphic-vps-starter
    ```
 2. Install dependencies:
