@@ -363,7 +363,11 @@ docker compose up -d certbot
 CRON_FILE="/etc/cron.d/devphic-cert-reload"
 if [[ -d /etc/cron.d ]]; then
   info "Configuring automated certificate renewal reload task..."
-  echo "0 3 * * * root cd ${PROJECT_ROOT} && docker compose exec -T nginx nginx -s reload > /dev/null 2>&1" | ${SUDO} tee "${CRON_FILE}" > /dev/null
+  cat <<CRONEOF | ${SUDO} tee "${CRON_FILE}" > /dev/null
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 3 * * * root cd ${PROJECT_ROOT} && docker compose exec -T nginx nginx -s reload > /dev/null 2>&1
+CRONEOF
   ${SUDO} chmod 644 "${CRON_FILE}"
   success "Automated renewal reload configured in ${CRON_FILE} (runs daily at 03:00)."
 fi
