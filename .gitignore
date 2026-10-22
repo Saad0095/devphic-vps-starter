@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+package-lock.json.backup
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+
+# Backups & SSL Generated artifacts
+backups/
+data/certbot/
+ssl/
+
+# Antigravity / Gemini temporary files
+.agents/
+.gemini/

@@ -1,0 +1,33 @@
+# Ignore Git
+.git
+.gitignore
+.github
+
+# Ignore Dependencies
+node_modules/
+npm-debug.log*
+
+# Ignore Environment Files
+.env
+.env.*
+
+# Ignore Tests & Docs
+tests/
+coverage/
+docs/
+*.md
+LICENSE
+
+# Ignore Scripts & Backups
+scripts/
+backups/
+ssl/
+data/
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.agents/
+.gemini/

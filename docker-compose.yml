@@ -1,0 +1,85 @@
+services:
+  # ============================================================================
+  # Application Service: Node.js LTS API
+  # ============================================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devphic_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - NODE_ENV=${NODE_ENV:-production}
+    # Security: Internal exposure only. Port 3000 is NOT bound to the host IP.
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - devphic-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Reverse Proxy Service: Nginx with TLS Termination & Rate Limiting
+  # ============================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: devphic_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN:-example.com}
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/templates:/etc/nginx/templates:ro
+      - certbot_www:/var/www/certbot:ro
+      - certbot_conf:/etc/letsencrypt:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - devphic-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # SSL Certificate Automation Service: Certbot
+  # Automatically checks certificate validity every 12 hours
+  # ============================================================================
+  certbot:
+    image: certbot/certbot:latest
+    container_name: devphic_certbot
+    restart: unless-stopped
+    volumes:
+      - certbot_www:/var/www/certbot:rw
+      - certbot_conf:/etc/letsencrypt:rw
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done;'"
+    networks:
+      - devphic-network
+
+networks:
+  devphic-network:
+    driver: bridge
+    name: devphic-network
+
+volumes:
+  certbot_www:
+    name: devphic_certbot_www
+  certbot_conf:
+    name: devphic_certbot_conf

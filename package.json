@@ -1,0 +1,40 @@
+{
+  "name": "devphic-vps-starter",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js LTS deployment starter kit for Ubuntu 24.04 VPS with Docker, Nginx reverse proxy, and Let's Encrypt SSL.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "docker",
+    "docker-compose",
+    "nginx",
+    "ssl",
+    "certbot",
+    "vps",
+    "ubuntu-24-04",
+    "hostinger",
+    "deployment",
+    "devops"
+  ],
+  "author": "Devphic Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}
